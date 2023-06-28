@@ -69,91 +69,27 @@ namespace hotel_management_api.Services
             }
         }
 
-        ///// <summary>
-        ///// Create User
-        ///// </summary>
-        ///// <param name="userStoreRequest"></param>
-        ///// <returns></returns>
-        //public object Store(UserStoreRequest userStoreRequest)
-        //{
-        //    try
-        //    {
-        //        var userCheckList = _customerRepository.FindAll().Where(row => row.Email == userStoreRequest.Email && row.NumberPhone == userStoreRequest.NumberPhone);
-        //        if(userCheckList.Count() > 0)
-        //        {
-        //            throw new Exception("Email or number phone already exist!");
-        //        }
-        //        var user = _mapper.Map<User>(userStoreRequest);
-        //        user.Username = user.Email;
-        //        user.Password = Untill.CreateMD5(user.Email);
+        /// <summary>
+        /// get detail
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public object GetDetail(int id)
+        {
+            try
+            {
+                var model = _customerRepository.FindOrFail(id);
+                if (model == null)
+                {
+                    throw new Exception("Customer does not exit!");
+                }
 
-        //        _customerRepository.Create(user);
-        //        _customerRepository.SaveChange();
-
-        //        return user;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Update user
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <param name="userStoreRequest"></param>
-        ///// <returns></returns>
-        //public object Update(int id, UserStoreRequest userStoreRequest)
-        //{
-        //    try
-        //    {
-        //        var user = _userRepository.FindOrFail(id);
-        //        if(user == null)
-        //        {
-        //            throw new Exception("User does not exit!");
-        //        }
-        //        user.Name = userStoreRequest.Name;
-        //        user.Email = userStoreRequest.Email;
-        //        user.Address = userStoreRequest.Address;
-        //        user.DateOfBirth = userStoreRequest.DateOfBirth;
-        //        user.CitizenIdentification = userStoreRequest.CitizenIdentification;
-        //        user.Role = userStoreRequest.Role;
-
-        //        _userRepository.UpdateByEntity(user);
-        //        _userRepository.SaveChange();
-        //        return user;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Delete user
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //public object Delete(int id)
-        //{
-        //    try
-        //    {
-        //        var user = _userRepository.FindOrFail(id);
-        //        if (user == null)
-        //        {
-        //            throw new Exception("User does not exit!");
-        //        }
-
-        //        _userRepository.DeleteByEntity(user);
-        //        _userRepository.SaveChange();
-
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+                return model;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
