@@ -1,11 +1,17 @@
 ﻿using AutoMapper;
+using AutoMapper.Configuration;
 using hotel_management_api.Common;
+using hotel_management_api.Controllers;
 using hotel_management_api.Database;
 using hotel_management_api.Dto;
 using hotel_management_api.Request;
 using hotel_management_api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 
 namespace hotel_management_api.Controllers
 {
